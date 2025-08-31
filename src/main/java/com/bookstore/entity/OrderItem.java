@@ -1,7 +1,8 @@
-// OrderItem.java
+// OrderItem.java - FIXED VERSION WITH JSON ANNOTATIONS
 package com.bookstore.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.math.BigDecimal;
 
 @Entity
@@ -13,6 +14,7 @@ public class OrderItem {
     
     @ManyToOne
     @JoinColumn(name = "order_id")
+    @JsonBackReference // This prevents circular reference
     private Order order;
     
     @ManyToOne
@@ -23,7 +25,7 @@ public class OrderItem {
     
     private BigDecimal price;
     
-    // Constructors, Getters, and Setters
+    // Constructors
     public OrderItem() {}
     
     public OrderItem(Order order, Book book, Integer quantity, BigDecimal price) {

@@ -1,6 +1,6 @@
 // SecurityConfig.java - FIXED VERSION
 package com.bookstore.config;
-
+import org.springframework.http.HttpMethod;
 import com.bookstore.security.JwtAuthenticationEntryPoint;
 import com.bookstore.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,10 @@ public class SecurityConfig {
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/api/books/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/books/**").permitAll()  // Public read
+                .requestMatchers(HttpMethod.POST, "/api/books/**").authenticated()  // Protected write
+                .requestMatchers(HttpMethod.PUT, "/api/books/**").authenticated()   // Protected update
+                .requestMatchers(HttpMethod.DELETE, "/api/books/**").authenticated() // Protected delete
                 .requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers("/error").permitAll()  // CRITICAL: Allow error endpoint
                 .requestMatchers("/favicon.ico").permitAll()

@@ -2,9 +2,10 @@
 -- Initial data for testing
 
 -- Insert admin user (password: admin123)
-INSERT INTO users (username, email, password, address, customer_id, role, age, created_date) 
-VALUES ('admin', 'admin@bookstore.com', 'admin123', 
-        'Admin Address', 'ADMIN001', 'ADMIN', 30, CURRENT_TIMESTAMP);
+-- Password is BCrypt encoded version of "admin123"
+-- INSERT INTO users (username, email, password, address, customer_id, role, age, created_date) 
+-- VALUES ('admin', 'admin@bookstore.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.', 
+--         'Admin Address', 'ADMIN001', 'ADMIN', 30, CURRENT_TIMESTAMP);
 
 -- Insert sample books
 INSERT INTO books (title, author, price, description, category, stock) VALUES

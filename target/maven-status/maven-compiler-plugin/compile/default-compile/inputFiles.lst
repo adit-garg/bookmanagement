@@ -3,6 +3,7 @@
 /Users/aditgarg/Desktop/book_management/backend/src/main/java/com/bookstore/config/GlobalExceptionHandler.java
 /Users/aditgarg/Desktop/book_management/backend/src/main/java/com/bookstore/repository/OrderRepository.java
 /Users/aditgarg/Desktop/book_management/backend/src/main/java/com/bookstore/dto/OrderRequest.java
+/Users/aditgarg/Desktop/book_management/backend/src/main/java/com/bookstore/config/DataInitializer.java
 /Users/aditgarg/Desktop/book_management/backend/src/main/java/com/bookstore/dto/LoginRequest.java
 /Users/aditgarg/Desktop/book_management/backend/src/main/java/com/bookstore/entity/UserRole.java
 /Users/aditgarg/Desktop/book_management/backend/src/main/java/com/bookstore/entity/OrderItem.java

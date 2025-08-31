@@ -24,5 +24,6 @@ com/bookstore/controller/AuthController.class
 com/bookstore/security/JwtAuthenticationFilter.class
 com/bookstore/service/OrderService.class
 com/bookstore/dto/AuthResponse.class
+com/bookstore/config/DataInitializer.class
 com/bookstore/repository/UserRepository.class
 com/bookstore/repository/BookRepository.class

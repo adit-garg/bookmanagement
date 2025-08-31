@@ -1,7 +1,9 @@
-// Order.java
+// Order.java - FIXED VERSION WITH JSON ANNOTATIONS
 package com.bookstore.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,6 +20,7 @@ public class Order {
     private User user;
     
     @Column(name = "order_date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime orderDate = LocalDateTime.now();
     
     @Column(name = "total_amount")
@@ -27,11 +30,12 @@ public class Order {
     private OrderStatus status = OrderStatus.PENDING;
     
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference // This prevents circular reference
     private List<OrderItem> orderItems;
     
     private String address;
     
-    // Constructors, Getters, and Setters
+    // Constructors
     public Order() {}
     
     public Order(User user, BigDecimal totalAmount, String address) {
@@ -57,9 +61,14 @@ public class Order {
     public void setStatus(OrderStatus status) { this.status = status; }
     
     public List<OrderItem> getOrderItems() { return orderItems; }
-    public void setOrderItems(List<OrderItem> orderItems) { this.orderItems = orderItems; }
+    public void setOrderItems(List<OrderItem> orderItems) { 
+        this.orderItems = orderItems;
+        // Set the bidirectional relationship
+        if (orderItems != null) {
+            orderItems.forEach(item -> item.setOrder(this));
+        }
+    }
     
     public String getAddress() { return address; }
     public void setAddress(String address) { this.address = address; }
 }
-
